@@ -60,4 +60,10 @@ public class QuestionDao {
 		
 		return jdbcTemplate.queryForObject(sql, rm, questionId);
 	}
+	
+	public void updateCount(long questionId, int count) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "UPDATE QUESTIONS SET countOfComment = countOfComment + ? WHERE questionId = ?";
+		jdbcTemplate.update(sql, count, questionId); //count와 questionId 순서를 바꿔서 문제 해결!
+	}
 }

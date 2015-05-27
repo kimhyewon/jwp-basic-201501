@@ -36,7 +36,7 @@
 
 		<h3>답변</h3>
 		<div class="answerWrite">
-			<form method="post">
+			<form name="questionForm" action="/api/addanswer.next" method="${method}">
 				<input type="hidden" name="questionId"
 					value="${question.questionId}">
 				<p>
