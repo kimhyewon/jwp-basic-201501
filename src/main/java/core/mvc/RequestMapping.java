@@ -3,6 +3,7 @@ package core.mvc;
 import java.util.HashMap;
 import java.util.Map;
 
+import next.controller.DeleteAnswerController;
 import next.controller.ListController;
 import next.controller.SaveAnswerController;
 import next.controller.SaveController;
@@ -21,6 +22,7 @@ public class RequestMapping {
 		mappings.put("/form.next", new ForwardController("form.jsp"));
 		mappings.put("/save.next", new SaveController());
 		mappings.put("/api/addanswer.next", new SaveAnswerController());
+		mappings.put("/api/deleteanswer.next", new DeleteAnswerController());
 		
 		logger.info("Initialized Request Mapping!");
 	}

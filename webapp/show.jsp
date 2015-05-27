@@ -36,7 +36,8 @@
 
 		<h3>답변</h3>
 		<div class="answerWrite">
-			<form name="questionForm" action="/api/addanswer.next" method="${method}">
+			<form name="questionForm" action="/api/addanswer.next"
+				method="${method}">
 				<input type="hidden" name="questionId"
 					value="${question.questionId}">
 				<p>
@@ -57,21 +58,27 @@
 		<div class="comments">
 			<h3>댓글 수 : ${question.countOfComment}</h3>
 
-			<c:forEach items="${answers}" var="each">
-				<div class="comment">
-					<div class="comment-metadata">
-						<span class="comment-author">${each.writer}</span> <span
-							class="comment-date"> ${each.createdDate} </span>
+			<form name="questionForm" action="/api/deleteanswer.next"
+				method="${method}">
+				<c:forEach items="${answers}" var="each">
+					<input type="hidden" name="answerId" value="${each.answerId}">
+					<input type="hidden" name="questionId"
+						value="${question.questionId}">
+					<div class="comment">
+						<div class="comment-metadata">
+							<span class="comment-author">${each.writer}</span> <span
+								class="comment-date"> ${each.createdDate} </span>
+						</div>
+						<div class="comment-content">
+							<div class="about">내용 :</div>
+							${each.contents}
+						</div>
+						<div>
+							<input type="submit" value="삭제" />
+						</div>
 					</div>
-					<div class="comment-content">
-						<div class="about">내용 :</div>
-						${each.contents}
-					</div>
-					<div>
-						<a href="#">삭제</a>
-					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</form>
 		</div>
 		<!-- comments end -->
 
