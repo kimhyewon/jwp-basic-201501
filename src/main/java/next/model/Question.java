@@ -1,26 +1,29 @@
 package next.model;
 
 import java.util.Date;
+import java.util.List;
+
+import next.dao.AnswerDao;
 
 public class Question {
 	private long questionId;
-	
+
 	private String writer;
-	
+
 	private String title;
-	
+
 	private String contents;
-	
+
 	private Date createdDate;
-	
+
 	private int countOfComment;
-	
+
 	public Question(String writer, String title, String contents) {
 		this(0, writer, title, contents, new Date(), 0);
-	}	
-	
-	public Question(long questionId, String writer, String title, String contents,
-			Date createdDate, int countOfComment) {
+	}
+
+	public Question(long questionId, String writer, String title,
+			String contents, Date createdDate, int countOfComment) {
 		this.questionId = questionId;
 		this.writer = writer;
 		this.title = title;
@@ -32,7 +35,7 @@ public class Question {
 	public long getQuestionId() {
 		return questionId;
 	}
-	
+
 	public String getWriter() {
 		return writer;
 	}
@@ -48,7 +51,7 @@ public class Question {
 	public Date getCreatedDate() {
 		return createdDate;
 	}
-	
+
 	public long getTimeFromCreateDate() {
 		return this.createdDate.getTime();
 	}
@@ -87,4 +90,33 @@ public class Question {
 		return true;
 	}
 
+	public boolean noAnswer() {
+		if (countOfComment == 0) {
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean sameWriter(String questionWriter) {
+		if (questionWriter.equals(writer))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean differnetWriter(AnswerDao answerDao) {
+		List<Answer> list = answerDao.findAllByQuestionId(questionId);
+		for (int i = 0; i < list.size(); i++) {
+			if (!list.get(i).getWriter().equals(writer))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean deleteOk(Question question, String questionWriter, 
+			AnswerDao answerDao) {
+		if (!question.noAnswer() && question.differnetWriter(answerDao)) return false;
+		if (!question.noAnswer() && question.sameWriter(questionWriter) && question.differnetWriter(answerDao)) return false;
+		else return true;
+	}
 }

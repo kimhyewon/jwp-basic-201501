@@ -3,8 +3,10 @@ package core.mvc;
 import java.util.HashMap;
 import java.util.Map;
 
+import next.controller.ApiDeleteQuestionController;
 import next.controller.ApiListController;
 import next.controller.DeleteAnswerController;
+import next.controller.DeleteQuestionController;
 import next.controller.ListController;
 import next.controller.SaveAnswerController;
 import next.controller.SaveController;
@@ -29,6 +31,8 @@ public class RequestMapping {
 		mappings.put("/api/list.next", new ApiListController());
 		mappings.put("/updateForm.next", new UpdateFormController());
 		mappings.put("/update.next", new UpdateController());
+		mappings.put("/delete.next", new DeleteQuestionController());
+		mappings.put("/api/delete.next", new ApiDeleteQuestionController());
 		
 		
 		logger.info("Initialized Request Mapping!");
