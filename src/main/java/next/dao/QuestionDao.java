@@ -1,5 +1,6 @@
 package next.dao;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -66,4 +67,12 @@ public class QuestionDao {
 		String sql = "UPDATE QUESTIONS SET countOfComment = countOfComment + ? WHERE questionId = ?";
 		jdbcTemplate.update(sql, count, questionId); //count와 questionId 순서를 바꿔서 문제 해결!
 	}
+	
+	
+	public void update(long questionId, String writer, String title, String contents) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "update QUESTIONS set writer=?, title=?, contents=? where questionId = ?";
+		jdbcTemplate.update(sql, writer, title, contents, questionId);
+	}
+
 }

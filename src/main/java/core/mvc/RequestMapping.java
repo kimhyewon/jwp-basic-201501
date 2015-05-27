@@ -9,6 +9,8 @@ import next.controller.ListController;
 import next.controller.SaveAnswerController;
 import next.controller.SaveController;
 import next.controller.ShowController;
+import next.controller.UpdateController;
+import next.controller.UpdateFormController;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,10 @@ public class RequestMapping {
 		mappings.put("/save.next", new SaveController());
 		mappings.put("/api/addanswer.next", new SaveAnswerController());
 		mappings.put("/api/deleteanswer.next", new DeleteAnswerController());
-		mappings.put("/api/list.next ", new ApiListController());
+		mappings.put("/api/list.next", new ApiListController());
+		mappings.put("/updateForm.next", new UpdateFormController());
+		mappings.put("/update.next", new UpdateController());
+		
 		
 		logger.info("Initialized Request Mapping!");
 	}
